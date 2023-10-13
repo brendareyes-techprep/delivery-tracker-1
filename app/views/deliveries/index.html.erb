@@ -56,7 +56,7 @@
         <div>Supposed to arrive on <%= a_delivery.supposed_to_arrive_on %></div>
         <div><%= a_delivery.details %></div>
         <div>
-          <form action="/modify_delivery/:path_id" method="post">
+          <form action="/modify_delivery/<% a_delivery.id %>" method="post">
             <input type="hidden" name="arrived" value="true">
           <button type="submit">Mark as received</button>
           </form>
@@ -73,7 +73,7 @@
           <li> <%= a_delivered.description %></li>
         </div>
         <div>
-          Updated <%= time_ago_in_words(a_delivered.updated_at) %> ago <a href="/delete_delivery/:path_id">Delete</a>
+          Updated <%= time_ago_in_words(a_delivered.updated_at) %> ago <a href="/delete_delivery/<%= a_delivered.id %>">Delete</a>
         </div>
       </ul>
        <% end %>
