@@ -69,12 +69,11 @@
     <div class="received"> 
         <% @received_delivery.received.each do |a_delivered| %>
       <ul>
-        <div>
-          <li> <%= a_delivered.description %></li>
-        </div>
-        <div>
-          Updated <%= time_ago_in_words(a_delivered.updated_at) %> ago <a href="/delete_delivery/<%= a_delivered.id %>">Delete</a>
-        </div>
+           <li> <%= a_delivered.description %> 
+
+      <div> <small>Updated <%= time_ago_in_words(a_delivered.created_at) %> <a href="/delete_delivery/<%= a_delivered.id %>">Delete</a></small> </div>
+          </li>
+          </div>
       </ul>
        <% end %>
     </div>
