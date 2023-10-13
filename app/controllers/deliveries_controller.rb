@@ -35,15 +35,14 @@ class DeliveriesController < ApplicationController
   end
 
   def update
-    # Parameters: {"arrived"=>"true", "path_id"=>":path_id"}
+    # Parameters: {"arrived"=>"true", "path_id"=>"123"} # The path_id should be an actual ID, not a string ":path_id".
     the_id = params.fetch("path_id")
-    the_delivery = Delivery.where({ :id => the_id }).at(0)
-
+    the_delivery = Delivery.find(the_id) 
+  
     the_delivery.arrived = params.fetch("arrived")
-
-    if the_delivery.valid?
-      the_delivery.save
-      redirect_to("/deliveries", { :notice => "Delivery marked as received."} )
+  
+    if the_delivery.save
+      redirect_to("/deliveries", { :notice => "Delivery marked as received." })
     else
       redirect_to("/deliveries", { :alert => the_delivery.errors.full_messages.to_sentence })
     end
